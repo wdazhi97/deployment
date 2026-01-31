@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: leaderboard
 spec:
-  replicas: 2
+  replicas: 1
   template:
     spec:
       containers:
@@ -16,5 +16,5 @@ spec:
             memory: "256Mi"
             cpu: "250m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "10m"
