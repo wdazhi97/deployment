@@ -11,6 +11,7 @@ resources:
 - game/deployment.yaml
 - friends/deployment.yaml
 - gateway/deployment.yaml
+- frontend/deployment.yaml
 
 namespace: snake-game-test
 

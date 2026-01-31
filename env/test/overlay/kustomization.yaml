@@ -33,3 +33,7 @@ patches:
   target:
     kind: Deployment
     name: gateway
+- path: frontend/patch.yaml
+  target:
+    kind: Deployment
+    name: frontend
