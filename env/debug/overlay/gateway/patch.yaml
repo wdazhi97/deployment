@@ -10,7 +10,7 @@ spec:
       - name: gateway
         env:
         - name: MONGODB_URI
-          value: "mongodb://mongodb:27017"
+          value: "mongodb://admin:password@mongodb:27017"
         - name: LOBBY_SERVICE_ADDR
           value: "lobby:50051"
         - name: MATCHING_SERVICE_ADDR
