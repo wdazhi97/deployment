@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/friends_server"]
+        command: ["/root/bin/friends_server"]
         livenessProbe:
           tcpSocket:
             port: 50056

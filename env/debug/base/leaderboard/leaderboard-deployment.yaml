@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/leaderboard_server"]
+        command: ["/root/bin/leaderboard_server"]
         livenessProbe:
           tcpSocket:
             port: 50054

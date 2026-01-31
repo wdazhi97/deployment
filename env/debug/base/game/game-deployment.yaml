@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/game_server"]
+        command: ["/root/bin/game_server"]
         livenessProbe:
           tcpSocket:
             port: 50055

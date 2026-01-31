@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/gateway_server"]
+        command: ["/root/bin/gateway_server"]
         livenessProbe:
           httpGet:
             path: /health

@@ -23,7 +23,7 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/room_server"]
+        command: ["/root/bin/room_server"]
         livenessProbe:
           tcpSocket:
             port: 50053
