@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: git@github.com:wdazhi97/deployment.git
-    targetRevision: HEAD
+    targetRevision: master
     path: env/test/overlay
 
   destination:

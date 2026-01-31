@@ -30,6 +30,7 @@ spec:
       volumes:
       - name: mongodb-storage
         emptyDir: {}
+---
 apiVersion: v1
 kind: Service
 metadata:

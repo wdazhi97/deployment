@@ -14,8 +14,10 @@ resources:
 
 namespace: snake-game-release
 
-commonLabels:
-  environment: release
+labels:
+- pairs:
+    environment: release
+  includeSelectors: false
 
 images:
 - name: server_go
