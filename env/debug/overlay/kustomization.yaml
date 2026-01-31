@@ -5,31 +5,31 @@ resources:
 - ../base
 
 patches:
-- path: lobby/values.yaml
+- path: lobby/patch.yaml
   target:
     kind: Deployment
     name: lobby
-- path: matching/values.yaml
+- path: matching/patch.yaml
   target:
     kind: Deployment
     name: matching
-- path: room/values.yaml
+- path: room/patch.yaml
   target:
     kind: Deployment
     name: room
-- path: leaderboard/values.yaml
+- path: leaderboard/patch.yaml
   target:
     kind: Deployment
     name: leaderboard
-- path: game/values.yaml
+- path: game/patch.yaml
   target:
     kind: Deployment
     name: game
-- path: friends/values.yaml
+- path: friends/patch.yaml
   target:
     kind: Deployment
     name: friends
-- path: gateway/values.yaml
+- path: gateway/patch.yaml
   target:
     kind: Deployment
     name: gateway
