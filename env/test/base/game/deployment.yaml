@@ -1,36 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: room
+  name: game
   labels:
-    app: room
+    app: game
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: room
+      app: game
   template:
     metadata:
       labels:
-        app: room
+        app: game
     spec:
       containers:
-      - name: room
-        image: snake-game-room:latest
+      - name: game
+        image: snake-game-game:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 50053
+        - containerPort: 50055
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/room_server"]
+        command: ["/root/bin/game_server"]
         livenessProbe:
           tcpSocket:
-            port: 50053
+            port: 50055
           initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
           tcpSocket:
-            port: 50053
+            port: 50055
           initialDelaySeconds: 5
           periodSeconds: 5
+---

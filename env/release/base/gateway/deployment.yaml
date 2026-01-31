@@ -1,36 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: game
+  name: gateway
   labels:
-    app: game
+    app: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: game
+      app: gateway
   template:
     metadata:
       labels:
-        app: game
+        app: gateway
     spec:
       containers:
-      - name: game
-        image: snake-game-game:latest
+      - name: gateway
+        image: snake-game-gateway:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 50055
+        - containerPort: 8080
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/game_server"]
+        command: ["/root/bin/gateway_server"]
         livenessProbe:
-          tcpSocket:
-            port: 50055
-          initialDelaySeconds: 10
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
-          tcpSocket:
-            port: 50055
+          httpGet:
+            path: /health
+            port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5

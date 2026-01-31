@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: matching
+  name: friends
   labels:
-    app: matching
+    app: friends
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: matching
+      app: friends
   template:
     metadata:
       labels:
-        app: matching
+        app: friends
     spec:
       containers:
-      - name: matching
-        image: snake-game-matching:latest
+      - name: friends
+        image: snake-game-friends:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 50052
+        - containerPort: 50056
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/matching_server"]
+        command: ["/root/bin/friends_server"]
         livenessProbe:
           tcpSocket:
-            port: 50052
+            port: 50056
           initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
           tcpSocket:
-            port: 50052
+            port: 50056
           initialDelaySeconds: 5
           periodSeconds: 5

@@ -2,15 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- snake-game-namespace.yaml
-- mongodb/mongodb-deployment.yaml
-- lobby/lobby-deployment.yaml
-- matching/matching-deployment.yaml
-- room/room-deployment.yaml
-- leaderboard/leaderboard-deployment.yaml
-- game/game-deployment.yaml
-- friends/friends-deployment.yaml
-- gateway/gateway-deployment.yaml
+- namespace.yaml
+- mongodb/deployment.yaml
+- lobby/deployment.yaml
+- matching/deployment.yaml
+- room/deployment.yaml
+- leaderboard/deployment.yaml
+- game/deployment.yaml
+- friends/deployment.yaml
+- gateway/deployment.yaml
 
 namespace: snake-game-release
 
@@ -18,26 +18,3 @@ labels:
 - pairs:
     environment: release
   includeSelectors: false
-
-images:
-- name: server_go
-  newName: snake-game-lobby
-  newTag: latest
-- name: server_go
-  newName: snake-game-matching
-  newTag: latest
-- name: server_go
-  newName: snake-game-room
-  newTag: latest
-- name: server_go
-  newName: snake-game-leaderboard
-  newTag: latest
-- name: server_go
-  newName: snake-game-game
-  newTag: latest
-- name: server_go
-  newName: snake-game-friends
-  newTag: latest
-- name: server_go
-  newName: snake-game-gateway
-  newTag: latest

@@ -1,36 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: friends
+  name: gateway
   labels:
-    app: friends
+    app: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: friends
+      app: gateway
   template:
     metadata:
       labels:
-        app: friends
+        app: gateway
     spec:
       containers:
-      - name: friends
-        image: snake-game-friends:latest
+      - name: gateway
+        image: snake-game-gateway:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 50056
+        - containerPort: 8080
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/friends_server"]
+        command: ["/root/bin/gateway_server"]
         livenessProbe:
-          tcpSocket:
-            port: 50056
-          initialDelaySeconds: 10
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
-          tcpSocket:
-            port: 50056
+          httpGet:
+            path: /health
+            port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
+---

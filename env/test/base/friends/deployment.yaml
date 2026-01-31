@@ -1,36 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: leaderboard
+  name: friends
   labels:
-    app: leaderboard
+    app: friends
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: leaderboard
+      app: friends
   template:
     metadata:
       labels:
-        app: leaderboard
+        app: friends
     spec:
       containers:
-      - name: leaderboard
-        image: snake-game-leaderboard:latest
+      - name: friends
+        image: snake-game-friends:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 50054
+        - containerPort: 50056
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/leaderboard_server"]
+        command: ["/root/bin/friends_server"]
         livenessProbe:
           tcpSocket:
-            port: 50054
+            port: 50056
           initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
           tcpSocket:
-            port: 50054
+            port: 50056
           initialDelaySeconds: 5
           periodSeconds: 5
+---

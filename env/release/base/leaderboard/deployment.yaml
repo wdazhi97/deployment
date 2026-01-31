@@ -1,39 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway
+  name: leaderboard
   labels:
-    app: gateway
+    app: leaderboard
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gateway
+      app: leaderboard
   template:
     metadata:
       labels:
-        app: gateway
+        app: leaderboard
     spec:
       containers:
-      - name: gateway
-        image: snake-game-gateway:latest
+      - name: leaderboard
+        image: snake-game-leaderboard:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 8080
+        - containerPort: 50054
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
-        command: ["./bin/gateway_server"]
+        command: ["/root/bin/leaderboard_server"]
         livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 30
+          tcpSocket:
+            port: 50054
+          initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
+          tcpSocket:
+            port: 50054
           initialDelaySeconds: 5
           periodSeconds: 5
----
