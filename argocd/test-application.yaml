@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snake-game-test
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/wdazhi97/deployment.git
+    targetRevision: HEAD
+    path: env/test/overlay
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: snake-game-test
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snake-game-release
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/wdazhi97/deployment.git
+    targetRevision: HEAD
+    path: env/release/overlay
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: snake-game-release
+
+  # Release 环境：手动同步（更安全）
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+  # 如需自动同步，取消下面注释：
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #   syncOptions:
+  #   - CreateNamespace=true

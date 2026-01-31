@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matching
+  labels:
+    app: matching
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matching
+  template:
+    metadata:
+      labels:
+        app: matching
+    spec:
+      containers:
+      - name: matching
+        image: snake-game-matching:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 50052
+        env:
+        - name: MONGODB_URI
+          value: "mongodb://mongodb:27017"
+        command: ["./bin/matching_server"]
+        livenessProbe:
+          tcpSocket:
+            port: 50052
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 50052
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
