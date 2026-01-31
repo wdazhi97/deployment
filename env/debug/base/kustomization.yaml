@@ -12,6 +12,7 @@ resources:
 - friends/deployment.yaml
 - gateway/deployment.yaml
 - frontend/deployment.yaml
+- otel/deployment.yaml
 
 namespace: snake-game-debug
 

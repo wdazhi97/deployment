@@ -23,6 +23,22 @@ spec:
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb:27017"
+        - name: LOBBY_SERVICE_ADDR
+          value: "lobby:50051"
+        - name: MATCHING_SERVICE_ADDR
+          value: "matching:50052"
+        - name: ROOM_SERVICE_ADDR
+          value: "room:50053"
+        - name: LEADERBOARD_SERVICE_ADDR
+          value: "leaderboard:50054"
+        - name: GAME_SERVICE_ADDR
+          value: "game:50055"
+        - name: FRIENDS_SERVICE_ADDR
+          value: "friends:50056"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "otel-collector:4317"
+        - name: ENVIRONMENT
+          value: "release"
         command: ["/root/bin/gateway_server"]
         livenessProbe:
           httpGet:
