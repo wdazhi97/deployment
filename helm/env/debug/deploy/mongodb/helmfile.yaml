@@ -1,0 +1,8 @@
+# helmfile 指导部署：mongodb @ helm-debug
+# 使用: helmfile -e debug sync  或 helm install mongodb ../../manifest/mongodb/base -n helm-debug -f ../../manifest/mongodb/overlay/values.yaml --create-namespace
+releases:
+  - name: mongodb
+    chart: ../../manifest/mongodb/base
+    values:
+      - ../../manifest/mongodb/overlay/values.yaml
+    namespace: helm-debug

@@ -1,0 +1,6 @@
+releases:
+  - name: friends
+    chart: ../../manifest/friends/base
+    values:
+      - ../../manifest/friends/overlay/values.yaml
+    namespace: helm-debug

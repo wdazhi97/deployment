@@ -1,0 +1,4 @@
+# debug 环境 overlay
+mongodb:
+  replicas: 1
+  imagePullPolicy: Never

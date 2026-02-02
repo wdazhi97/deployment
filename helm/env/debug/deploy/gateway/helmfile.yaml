@@ -1,0 +1,6 @@
+releases:
+  - name: gateway
+    chart: ../../manifest/gateway/base
+    values:
+      - ../../manifest/gateway/overlay/values.yaml
+    namespace: helm-debug

@@ -1,0 +1,6 @@
+releases:
+  - name: leaderboard
+    chart: ../../manifest/leaderboard/base
+    values:
+      - ../../manifest/leaderboard/overlay/values.yaml
+    namespace: helm-debug

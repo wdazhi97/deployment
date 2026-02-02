@@ -1,0 +1,6 @@
+releases:
+  - name: matching
+    chart: ../../manifest/matching/base
+    values:
+      - ../../manifest/matching/overlay/values.yaml
+    namespace: helm-debug

@@ -1,0 +1,3 @@
+frontend:
+  replicas: 1
+  imagePullPolicy: Never

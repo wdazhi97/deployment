@@ -1,3 +1,0 @@
-# helm dependency update 生成的包
-charts/*.tgz
-Chart.lock

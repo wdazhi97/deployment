@@ -1,0 +1,6 @@
+releases:
+  - name: lobby
+    chart: ../../manifest/lobby/base
+    values:
+      - ../../manifest/lobby/overlay/values.yaml
+    namespace: helm-debug

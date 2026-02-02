@@ -1,0 +1,3 @@
+room:
+  replicas: 1
+  imagePullPolicy: Never

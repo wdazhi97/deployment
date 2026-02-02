@@ -1,0 +1,6 @@
+releases:
+  - name: game
+    chart: ../../manifest/game/base
+    values:
+      - ../../manifest/game/overlay/values.yaml
+    namespace: helm-debug

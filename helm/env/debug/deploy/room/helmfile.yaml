@@ -1,0 +1,6 @@
+releases:
+  - name: room
+    chart: ../../manifest/room/base
+    values:
+      - ../../manifest/room/overlay/values.yaml
+    namespace: helm-debug

@@ -1,0 +1,4 @@
+gateway:
+  replicas: 1
+  imagePullPolicy: Never
+  environment: debug

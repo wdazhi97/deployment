@@ -1,0 +1,6 @@
+releases:
+  - name: frontend
+    chart: ../../manifest/frontend/base
+    values:
+      - ../../manifest/frontend/overlay/values.yaml
+    namespace: helm-debug
