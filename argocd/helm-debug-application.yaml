@@ -1,10 +1,8 @@
-# 新目录下按服务拆分，无单一 umbrella chart。
-# 示例：仅部署 mongodb 到 helm-debug。
-# 其余服务可复制本文件，将 name、path 中的 mongodb 改为对应服务名，并可选建 helm-debug-application-set 统一管理。
+# 一个 Application 部署 helm-debug 下所有服务（umbrella chart）
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: snake-game-helm-debug-mongodb
+  name: snake-game-helm-debug
   namespace: argocd
 spec:
   project: default
@@ -12,9 +10,23 @@ spec:
   source:
     repoURL: git@github.com:wdazhi97/deployment.git
     targetRevision: master
-    path: helm/env/debug/deploy/mongodb
+<<<<<<< Current (Your changes)
+    path: helm/env/debug/deploy/mongodb/helmfile.yaml
+=======
+    path: helm/env/debug
+>>>>>>> Incoming (Background Agent changes)
     helm:
-      releaseName: mongodb
+      releaseName: snake-game-helm-debug
+      valueFiles:
+        - manifest/mongodb/overlay/values.yaml
+        - manifest/lobby/overlay/values.yaml
+        - manifest/matching/overlay/values.yaml
+        - manifest/room/overlay/values.yaml
+        - manifest/leaderboard/overlay/values.yaml
+        - manifest/game/overlay/values.yaml
+        - manifest/friends/overlay/values.yaml
+        - manifest/gateway/overlay/values.yaml
+        - manifest/frontend/overlay/values.yaml
 
   destination:
     server: https://kubernetes.default.svc

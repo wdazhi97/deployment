@@ -1,0 +1,35 @@
+# Umbrella Chart：一个 Application 部署 helm-debug 下所有服务
+apiVersion: v2
+name: snake-game-helm-debug
+description: Snake Game Helm Debug 环境（含所有服务）
+type: application
+version: 0.1.0
+appVersion: "1.0"
+dependencies:
+  - name: mongodb
+    version: "0.1.0"
+    repository: "file://./manifest/mongodb/base"
+  - name: lobby
+    version: "0.1.0"
+    repository: "file://./manifest/lobby/base"
+  - name: matching
+    version: "0.1.0"
+    repository: "file://./manifest/matching/base"
+  - name: room
+    version: "0.1.0"
+    repository: "file://./manifest/room/base"
+  - name: leaderboard
+    version: "0.1.0"
+    repository: "file://./manifest/leaderboard/base"
+  - name: game
+    version: "0.1.0"
+    repository: "file://./manifest/game/base"
+  - name: friends
+    version: "0.1.0"
+    repository: "file://./manifest/friends/base"
+  - name: gateway
+    version: "0.1.0"
+    repository: "file://./manifest/gateway/base"
+  - name: frontend
+    version: "0.1.0"
+    repository: "file://./manifest/frontend/base"
