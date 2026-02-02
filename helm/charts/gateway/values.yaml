@@ -1,0 +1,16 @@
+image: snake-game-gateway:latest
+imagePullPolicy: Never
+replicas: 1
+port: 8080
+command: ["/root/bin/gateway_server"]
+serviceType: LoadBalancer
+environment: debug
+mongodbUri: "mongodb://admin:password@mongodb:27017"
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

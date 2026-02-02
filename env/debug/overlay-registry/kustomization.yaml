@@ -1,0 +1,93 @@
+# 使用集群内本地 Registry 的 overlay
+# 应用前需：1) 部署 registry  2) 配置 k3s registries.yaml 见 docs/local-registry.md
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../base
+
+# 将镜像地址替换为本地 registry
+images:
+- name: snake-game-gateway:latest
+  newName: registry.local:5000/snake-game-gateway
+  newTag: latest
+- name: snake-game-lobby:latest
+  newName: registry.local:5000/snake-game-lobby
+  newTag: latest
+- name: snake-game-matching:latest
+  newName: registry.local:5000/snake-game-matching
+  newTag: latest
+- name: snake-game-room:latest
+  newName: registry.local:5000/snake-game-room
+  newTag: latest
+- name: snake-game-leaderboard:latest
+  newName: registry.local:5000/snake-game-leaderboard
+  newTag: latest
+- name: snake-game-game:latest
+  newName: registry.local:5000/snake-game-game
+  newTag: latest
+- name: snake-game-friends:latest
+  newName: registry.local:5000/snake-game-friends
+  newTag: latest
+- name: snake-game-frontend:latest
+  newName: registry.local:5000/snake-game-frontend
+  newTag: latest
+
+# 从本地 registry 拉取，需要 IfNotPresent
+patches:
+- target:
+    kind: Deployment
+    name: gateway
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: lobby
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: matching
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: room
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: leaderboard
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: game
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: friends
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent
+- target:
+    kind: Deployment
+    name: frontend
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/imagePullPolicy
+      value: IfNotPresent

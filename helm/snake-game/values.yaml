@@ -1,0 +1,18 @@
+# Umbrella Chart 默认 values，仅做子 Chart 透传与少量覆盖
+# 各服务完整配置在 charts/<service>/values.yaml
+# 环境差异在 envs/<env>/values.yaml
+
+global:
+  environment: debug
+  mongodbUri: "mongodb://admin:password@mongodb:27017"
+
+# 子 Chart 覆盖（按需，环境 values 可再覆盖）
+mongodb: {}
+lobby: {}
+matching: {}
+room: {}
+leaderboard: {}
+game: {}
+friends: {}
+gateway: {}
+frontend: {}

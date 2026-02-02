@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snake-game-helm-debug
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: git@github.com:wdazhi97/deployment.git
+    targetRevision: master
+    path: helm/snake-game
+    helm:
+      valueFiles:
+        # 相对 chart 目录 helm/snake-game，指向 envs/debug 的 values
+        - ../../envs/debug/values.yaml
+      releaseName: snake-game-helm-debug
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: helm-debug
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

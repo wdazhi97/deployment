@@ -1,0 +1,8 @@
+# helm-test 环境：仅环境相关覆盖
+# 使用: helm install snake-game-test ../snake-game -n helm-test -f values.yaml --create-namespace
+
+global:
+  environment: test
+
+gateway:
+  environment: test

@@ -1,0 +1,13 @@
+image: snake-game-frontend:latest
+imagePullPolicy: Never
+replicas: 1
+port: 80
+serviceType: LoadBalancer
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

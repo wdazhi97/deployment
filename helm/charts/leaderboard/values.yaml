@@ -1,0 +1,14 @@
+image: snake-game-leaderboard:latest
+imagePullPolicy: Never
+replicas: 1
+port: 50054
+command: ["/root/bin/leaderboard_server"]
+mongodbUri: "mongodb://admin:password@mongodb:27017"
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

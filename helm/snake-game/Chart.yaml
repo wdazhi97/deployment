@@ -1,0 +1,38 @@
+apiVersion: v2
+name: snake-game
+description: Snake Game 微服务 Umbrella Chart（组合各服务子 Chart）
+type: application
+version: 0.2.0
+appVersion: "1.0"
+keywords:
+  - snake-game
+  - game
+  - microservices
+dependencies:
+  - name: mongodb
+    version: "0.1.0"
+    repository: "file://../charts/mongodb"
+  - name: lobby
+    version: "0.1.0"
+    repository: "file://../charts/lobby"
+  - name: matching
+    version: "0.1.0"
+    repository: "file://../charts/matching"
+  - name: room
+    version: "0.1.0"
+    repository: "file://../charts/room"
+  - name: leaderboard
+    version: "0.1.0"
+    repository: "file://../charts/leaderboard"
+  - name: game
+    version: "0.1.0"
+    repository: "file://../charts/game"
+  - name: friends
+    version: "0.1.0"
+    repository: "file://../charts/friends"
+  - name: gateway
+    version: "0.1.0"
+    repository: "file://../charts/gateway"
+  - name: frontend
+    version: "0.1.0"
+    repository: "file://../charts/frontend"
