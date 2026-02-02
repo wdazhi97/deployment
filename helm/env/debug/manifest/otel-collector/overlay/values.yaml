@@ -1,0 +1,4 @@
+# debug 环境 overlay
+otel-collector:
+  replicas: 1
+  imagePullPolicy: IfNotPresent

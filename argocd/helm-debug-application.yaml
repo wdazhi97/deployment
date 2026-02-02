@@ -10,15 +10,12 @@ spec:
   source:
     repoURL: git@github.com:wdazhi97/deployment.git
     targetRevision: master
-<<<<<<< Current (Your changes)
-    path: helm/env/debug/deploy/mongodb/helmfile.yaml
-=======
     path: helm/env/debug
->>>>>>> Incoming (Background Agent changes)
     helm:
       releaseName: snake-game-helm-debug
       valueFiles:
         - manifest/mongodb/overlay/values.yaml
+        - manifest/otel-collector/overlay/values.yaml
         - manifest/lobby/overlay/values.yaml
         - manifest/matching/overlay/values.yaml
         - manifest/room/overlay/values.yaml

@@ -1,6 +1,7 @@
 # Umbrella 默认 values，各服务 overlay 通过 valueFiles 注入
 # ArgoCD 中配置 valueFiles 为各 manifest/*/overlay/values.yaml
 mongodb: {}
+otel-collector: {}
 lobby: {}
 matching: {}
 room: {}

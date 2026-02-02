@@ -1,0 +1,48 @@
+image: otel/opentelemetry-collector-contrib:latest
+imagePullPolicy: IfNotPresent
+replicas: 1
+
+# OpenTelemetry Collector 配置
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+  
+  processors:
+    batch:
+    
+  exporters:
+    debug:
+      verbosity: detailed
+    # 可以添加其他 exporters，如 jaeger, prometheus 等
+    
+  service:
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [debug]
+      metrics:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [debug]
+      logs:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [debug]
+
+ports:
+  grpc: 4317
+  http: 4318
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

@@ -1,0 +1,117 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  labels:
+    app: otel-collector
+data:
+  config.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:{{ .Values.ports.grpc }}
+          http:
+            endpoint: 0.0.0.0:{{ .Values.ports.http }}
+    
+    processors:
+      batch:
+    
+    exporters:
+      debug:
+        verbosity: detailed
+    
+    extensions:
+      health_check:
+        endpoint: 0.0.0.0:13133
+    
+    service:
+      extensions: [health_check]
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [debug]
+        metrics:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [debug]
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [debug]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  labels:
+    app: otel-collector
+spec:
+  replicas: {{ .Values.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: otel-collector
+  template:
+    metadata:
+      labels:
+        app: otel-collector
+    spec:
+      containers:
+      - name: otel-collector
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.imagePullPolicy | default "IfNotPresent" }}
+        command:
+        - /otelcol-contrib
+        - --config=/etc/otel-collector-config/config.yaml
+        ports:
+        - containerPort: {{ .Values.ports.grpc }}
+          name: otlp-grpc
+          protocol: TCP
+        - containerPort: {{ .Values.ports.http }}
+          name: otlp-http
+          protocol: TCP
+        - containerPort: 13133
+          name: health-check
+          protocol: TCP
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/otel-collector-config
+        resources:
+{{- toYaml .Values.resources | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 13133
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 13133
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: config-volume
+        configMap:
+          name: otel-collector-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  labels:
+    app: otel-collector
+spec:
+  selector:
+    app: otel-collector
+  ports:
+  - name: otlp-grpc
+    protocol: TCP
+    port: {{ .Values.ports.grpc }}
+    targetPort: {{ .Values.ports.grpc }}
+  - name: otlp-http
+    protocol: TCP
+    port: {{ .Values.ports.http }}
+    targetPort: {{ .Values.ports.http }}
+  type: ClusterIP

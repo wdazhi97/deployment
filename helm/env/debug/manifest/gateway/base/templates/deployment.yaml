@@ -36,7 +36,7 @@ spec:
         - name: FRIENDS_SERVICE_ADDR
           value: "friends:50056"
         - name: ENVIRONMENT
-          value: {{ (index .Values "global" "environment") | default .Values.environment | quote }}
+          value: {{ .Values.environment | quote }}
         command: {{ .Values.command }}
         livenessProbe:
           httpGet:
@@ -50,7 +50,8 @@ spec:
             port: {{ .Values.port }}
           initialDelaySeconds: 5
           periodSeconds: 5
-        resources: {{- toYaml .Values.resources | nindent 8 }}
+        resources:
+{{- toYaml .Values.resources | nindent 10 }}
 ---
 apiVersion: v1
 kind: Service

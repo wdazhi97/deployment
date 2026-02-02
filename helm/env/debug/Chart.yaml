@@ -9,6 +9,9 @@ dependencies:
   - name: mongodb
     version: "0.1.0"
     repository: "file://./manifest/mongodb/base"
+  - name: otel-collector
+    version: "0.1.0"
+    repository: "file://./manifest/otel-collector/base"
   - name: lobby
     version: "0.1.0"
     repository: "file://./manifest/lobby/base"
