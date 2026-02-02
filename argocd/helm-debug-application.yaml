@@ -12,10 +12,8 @@ spec:
   source:
     repoURL: git@github.com:wdazhi97/deployment.git
     targetRevision: master
-    path: helm/env/debug/manifest/mongodb/base
+    path: helm/env/debug/deploy/mongodb
     helm:
-      valueFiles:
-        - ../overlay/values.yaml
       releaseName: mongodb
 
   destination:
